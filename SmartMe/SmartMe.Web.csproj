@@ -286,8 +286,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\dist\css\" />
-    <Folder Include="app\dist\js\" />
     <Folder Include="app\modules\common\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
