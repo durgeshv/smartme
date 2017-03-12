@@ -6,27 +6,32 @@
         'ngResource',
         'ngSanitize',
         'ngStorage',
-        'ui.router',
-        'smartme.expenses'
+        'smartme.common',
+        'smartme.dashboard',
+        'smartme.expenses',
+        'smartme.passwordsafe'
     ]);
 
     angular.module('smartme').config(config);
     angular.module('smartme').controller('IndexController', IndexController);
     IndexController.$inject = ['$scope', '$sessionStorage', '$q'];
 
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        $locationProvider.hashPrefix('');
-        $urlRouterProvider.otherwise('/dashboard');
-
-        $stateProvider
-            .state('dashboard', {
-                url: '/dashboard',
-                templateUrl: 'modules/dashboard/dashboard.html'
+    function config($routeProvider) {
+        console.log('Calling from appjs routeprovider');
+        $routeProvider
+            .when('/dashboard', {
+                templateUrl: 'modules/dashboard/dashboard.html',
+                controller: 'DashboardController'
             })
-            .state('expenses', {
-                url: '/expenses',
-                templateUrl: 'modules/expenses/expenses.html'
-            });
+            .when('/expenses', {
+                templateUrl: 'modules/expenses/expenses.html',
+                controller: 'ExpenseController'
+            })
+            .when('/passwordsafe', {
+                templateUrl: 'modules/passwordsafe/passwordsafe.html',
+                controller: 'PasswordSafeController'
+            })
+            .otherwise('/dashboard');
     }
 
     function IndexController($scope, $sessionStorage, $q) {

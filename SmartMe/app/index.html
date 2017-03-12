@@ -23,6 +23,11 @@
 
         <!-- Custom Fonts -->
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <!-- DataTable -->
+        <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <link href="vendor/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +55,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
                             <li><a href="#/expenses">Expenses</a></li>
-                            <li><a href="#">Password Safe</a></li>
+                            <li><a href="#/passwordsafe">Password Safe</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -80,7 +85,7 @@
             </nav>
             
             <div id="page-wrapper">
-                <div ui-view></div>
+                <div ng-view></div>
             </div>
             <!-- /#page-wrapper -->
         </div>
@@ -95,17 +100,13 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-        <!-- Morris Charts JavaScript -->
-        <!--<script src="vendor/raphael/raphael.min.js"></script>
-        <script src="vendor/morrisjs/morris.min.js"></script>
-        <script src="data/morris-data.js"></script>-->
-
         <!-- Waiting Dialog JavaScript -->
         <script src="vendor/waiting-dialog/waiting-dailog.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <!--<script src="dist/js/sb-admin-2.js"></script>-->
-        
+        <!-- Bootstrap DataTable JavaScript -->
+        <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/js/dataTables.bootstrap.min.js"></script>
+
         <!-- Angularjs JavaScript -->
         <script src="vendor/angularjs/angular.min.js"></script>
         <script src="vendor/angularjs/angular-aria.min.js"></script>
@@ -118,8 +119,21 @@
         <script src="app.js"></script>
 
         <!-- Modules -->
+        <!-- Common -->
+        <script src="modules/common/common-module.js"></script>
+
+        <!-- Dashboard -->
+        <script src="modules/dashboard/dashboard-module.js"></script>
+        <script src="modules/dashboard/dashboard-controller.js"></script>
+
+        <!-- Expenses -->
         <script src="modules/expenses/expenses-module.js"></script>
         <script src="modules/expenses/expenses-controller.js"></script>
+
+        <!-- PasswordSafe -->
+        <script src="modules/passwordsafe/passwordsafe-module.js"></script>
+        <script src="modules/passwordsafe/passwordsafe-controller.js"></script>
+        <script src="modules/passwordsafe/passwordsafe-directive.js"></script>
 
     </body>
 </html>

@@ -2,3 +2,11 @@ packages/
 SmartMe/bin/
 SmartMe/obj/
 .vs/SmartMe/v14/
+SmartMe.Service/obj/
+SmartMe.Service/bin/
+SmartMe.Model/obj/
+*.cache
+SmartMe.DataAccess/obj/
+SmartMe.DataAccess/bin/
+SmartMe.Model/bin/
+SmartMe.ServiceModel/obj/

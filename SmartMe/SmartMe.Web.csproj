@@ -112,11 +112,18 @@
     <Content Include="app\app.js" />
     <Content Include="app\index.html" />
     <Content Include="app\login.html" />
+    <Content Include="app\modules\common\common-module.js" />
+    <Content Include="app\modules\dashboard\dashboard-controller.js" />
+    <Content Include="app\modules\dashboard\dashboard-module.js" />
     <Content Include="app\modules\dashboard\dashboard.html" />
     <Content Include="app\modules\expenses\expenses-controller.js" />
     <Content Include="app\modules\expenses\expenses-module.js" />
     <Content Include="app\modules\expenses\expenses.html" />
     <Content Include="app\modules\login\login.html" />
+    <Content Include="app\modules\passwordsafe\passwordsafe-controller.js" />
+    <Content Include="app\modules\passwordsafe\passwordsafe-directive.js" />
+    <Content Include="app\modules\passwordsafe\passwordsafe-module.js" />
+    <Content Include="app\modules\passwordsafe\passwordsafe.html" />
     <Content Include="app\vendor\angularjs\angular-aria.min.js" />
     <Content Include="app\vendor\angularjs\angular-cookies.min.js" />
     <Content Include="app\vendor\angularjs\angular-resource.min.js" />
@@ -222,6 +229,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PasswordSafeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -286,9 +294,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\modules\common\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartMe.Model\SmartMe.Model.csproj">
+      <Project>{4208556e-858b-4386-b93b-54096611ff43}</Project>
+      <Name>SmartMe.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartMe.ServiceModel\SmartMe.ServiceModel.csproj">
+      <Project>{cc71e194-7d88-48f4-bfb0-2f2a9e9357e5}</Project>
+      <Name>SmartMe.ServiceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartMe.Service\SmartMe.Service.csproj">
+      <Project>{46a1d7db-ce87-4fdd-b939-2cb8521aaf2e}</Project>
+      <Name>SmartMe.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
