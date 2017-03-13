@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,22 +17,22 @@ namespace SmartMe.DataAccess
     public class PasswordSafeDao : GenericDao
     {
 
-        #region GetRecords
+        #region Get
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IList<PasswordSafe> GetRecords()
+        public IList<PasswordSafe> Get()
         {
             IList<PasswordSafe> records = null;
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                using (SQLiteConnection sqlConnection = new SQLiteConnection(connectionString))
                 {
                     sqlConnection.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand(Query.GET_PASSWORD_SAFE_RECORDS, sqlConnection))
+                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.GET_PASSWORD_SAFE_RECORDS, sqlConnection))
                     {
-                        SqlDataReader reader = sqlCommand.ExecuteReader();
+                        SQLiteDataReader reader = sqlCommand.ExecuteReader();
 
                         if (reader != null)
                         {
@@ -57,7 +58,7 @@ namespace SmartMe.DataAccess
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -65,21 +66,84 @@ namespace SmartMe.DataAccess
         }
         #endregion
 
-        #region SaveRecord
-        public bool SaveRecord(int passwordSafeId, string serviceName, string username, string password, string serviceType, 
-            string securityQuestion1, string securityAnswer1, string securityQuestion2, string securityAnswer2, 
+        #region Insert
+        public int Insert(string serviceName, string username, string password, string serviceType,
+            string securityQuestion1, string securityAnswer1, string securityQuestion2, string securityAnswer2,
+            string securityQuestion3, string securityAnswer3)
+        {
+            long passwordSafeId = 0;
+            try
+            {
+                using (SQLiteConnection sqlConnection = new SQLiteConnection(connectionString))
+                {
+                    sqlConnection.Open();
+                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.SAVE_PASSWORD_SAFE_RECORD, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add(serviceName);
+                        sqlCommand.Parameters.Add(serviceType);
+                        sqlCommand.Parameters.Add(username);
+                        sqlCommand.Parameters.Add(password);
+                        sqlCommand.Parameters.Add(securityQuestion1);
+                        sqlCommand.Parameters.Add(securityAnswer1);
+                        sqlCommand.Parameters.Add(securityQuestion2);
+                        sqlCommand.Parameters.Add(securityAnswer2);
+                        sqlCommand.Parameters.Add(securityQuestion3);
+                        sqlCommand.Parameters.Add(securityAnswer3);
+
+                        passwordSafeId = (long)sqlCommand.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return (int)passwordSafeId;
+        }
+        #endregion
+
+        #region Update
+        public bool Update(int passwordSafeId, string serviceName, string username, string password, string serviceType,
+            string securityQuestion1, string securityAnswer1, string securityQuestion2, string securityAnswer2,
             string securityQuestion3, string securityAnswer3)
         {
             try
             {
+                using (SQLiteConnection sqlConnection = new SQLiteConnection(connectionString))
+                {
+                    sqlConnection.Open();
+                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.SAVE_PASSWORD_SAFE_RECORD, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add(serviceName);
+                        sqlCommand.Parameters.Add(serviceType);
+                        sqlCommand.Parameters.Add(username);
+                        sqlCommand.Parameters.Add(password);
+                        sqlCommand.Parameters.Add(securityQuestion1);
+                        sqlCommand.Parameters.Add(securityAnswer1);
+                        sqlCommand.Parameters.Add(securityQuestion2);
+                        sqlCommand.Parameters.Add(securityAnswer2);
+                        sqlCommand.Parameters.Add(securityQuestion3);
+                        sqlCommand.Parameters.Add(securityAnswer3);
 
+                        sqlCommand.ExecuteScalar();
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
+            return true;
         }
         #endregion
+
+        #region Delete
+        public bool Delete(int passwordSafeId)
+        {
+            return true;
+        }
+        #endregion
+
     }
     #endregion
 }

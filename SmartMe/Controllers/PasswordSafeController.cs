@@ -36,12 +36,13 @@ namespace SmartMe.Controllers
             try
             {
                 PasswordSafeService service = new PasswordSafeService();
-
+                service.SaveRecord();
             }
             catch(Exception ex)
             {
                 throw ex;
             }
+            return null;
         }
     }
 }
