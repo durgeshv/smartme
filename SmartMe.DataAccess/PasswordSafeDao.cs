@@ -77,7 +77,7 @@ namespace SmartMe.DataAccess
                 using (SQLiteConnection sqlConnection = new SQLiteConnection(connectionString))
                 {
                     sqlConnection.Open();
-                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.SAVE_PASSWORD_SAFE_RECORD, sqlConnection))
+                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.INSERT_PASSWORD_SAFE_RECORD, sqlConnection))
                     {
                         sqlCommand.Parameters.Add(serviceName);
                         sqlCommand.Parameters.Add(serviceType);
@@ -112,7 +112,7 @@ namespace SmartMe.DataAccess
                 using (SQLiteConnection sqlConnection = new SQLiteConnection(connectionString))
                 {
                     sqlConnection.Open();
-                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.SAVE_PASSWORD_SAFE_RECORD, sqlConnection))
+                    using (SQLiteCommand sqlCommand = new SQLiteCommand(Query.UPDATE_PASSWORD_SAFE_RECORD, sqlConnection))
                     {
                         sqlCommand.Parameters.Add(serviceName);
                         sqlCommand.Parameters.Add(serviceType);

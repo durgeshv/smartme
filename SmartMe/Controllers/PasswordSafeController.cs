@@ -36,7 +36,11 @@ namespace SmartMe.Controllers
             try
             {
                 PasswordSafeService service = new PasswordSafeService();
-                service.SaveRecord();
+                service.SaveRecord(request.PasswordSafe.PasswordSafeId, request.PasswordSafe.ServiceName, 
+                    request.PasswordSafe.ServiceType, request.PasswordSafe.Username, request.PasswordSafe.Password, 
+                    request.PasswordSafe.SecurityQuestion1, request.PasswordSafe.SecurityAnswer1, 
+                    request.PasswordSafe.SecurityQuestion2, request.PasswordSafe.SecurityAnswer2, 
+                    request.PasswordSafe.SecurityQuestion3, request.PasswordSafe.SecurityAnswer3);
             }
             catch(Exception ex)
             {
