@@ -248,6 +248,7 @@
     <Content Include="app\vendor\raphael\raphael.js" />
     <Content Include="app\vendor\raphael\raphael.min.js" />
     <Content Include="app\vendor\waiting-dialog\waiting-dailog.js" />
+    <Content Include="DDL.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

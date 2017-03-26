@@ -1,26 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartMe.DataAccess
 {
     public class GenericDao
     {
-        public string connectionString = ConfigurationManager.ConnectionStrings["SqliteConnection"].ConnectionString;
+        protected string connectionString = ConfigurationManager.ConnectionStrings["SqlServerConnectionString"].ConnectionString;
 
-        public string GetStringValue(SQLiteDataReader reader, string key)
+        protected string GetString(object value)
         {
-            return reader[key] != DBNull.Value ? (string)reader[key] : null;
+            return value != null ? value.ToString() : null;
         }
 
-        public int GetIntValue(SQLiteDataReader reader, string key)
+        protected int GetInt(object value)
         {
-            return reader[key] != DBNull.Value ? (int)reader[key] : 0;
+            return value != null && !string.IsNullOrEmpty(value.ToString()) ? Convert.ToInt32(value.ToString()) : 0;
+        }
+
+        protected bool GetBoolean(object value)
+        {
+            return value != null && !string.IsNullOrEmpty(value.ToString())
+                && (value.ToString().ToLower().Equals("true") || value.ToString().Equals("1"));
+        }
+
+        protected DateTime? GetDate(object value)
+        {
+            return value != null && !string.IsNullOrEmpty(value.ToString()) && DateTime.Parse(value.ToString()) != null
+                ? (DateTime?)Convert.ToDateTime(value.ToString()) : null;
         }
 
     }

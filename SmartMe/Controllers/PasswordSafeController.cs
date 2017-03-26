@@ -13,6 +13,8 @@ namespace SmartMe.Controllers
     [RoutePrefix("api/passwords")]
     public class PasswordSafeController : ApiController
     {
+        private LoggerService Log = LoggerService.GetInstance();
+
         [HttpGet]
         [Route("")]
         public IList<PasswordSafe> Get(
@@ -25,6 +27,7 @@ namespace SmartMe.Controllers
             }
             catch(Exception ex)
             {
+                Log.Error(ex);
                 throw ex;
             }
         }
@@ -33,20 +36,25 @@ namespace SmartMe.Controllers
         [Route("save")]
         public PasswordSafeResponse SaveRecord(PasswordSafeRequest request)
         {
+            PasswordSafeResponse response = new PasswordSafeResponse();
             try
             {
                 PasswordSafeService service = new PasswordSafeService();
-                service.SaveRecord(request.PasswordSafe.PasswordSafeId, request.PasswordSafe.ServiceName, 
-                    request.PasswordSafe.ServiceType, request.PasswordSafe.Username, request.PasswordSafe.Password, 
-                    request.PasswordSafe.SecurityQuestion1, request.PasswordSafe.SecurityAnswer1, 
-                    request.PasswordSafe.SecurityQuestion2, request.PasswordSafe.SecurityAnswer2, 
-                    request.PasswordSafe.SecurityQuestion3, request.PasswordSafe.SecurityAnswer3);
+                response.PasswordSafeId = service.SaveRecord(request.PasswordSafe.PasswordSafeId, request.PasswordSafe.ServiceName,
+                                                request.PasswordSafe.ServiceType, request.PasswordSafe.Username, request.PasswordSafe.Password,
+                                                request.PasswordSafe.SecurityQuestion1, request.PasswordSafe.SecurityAnswer1,
+                                                request.PasswordSafe.SecurityQuestion2, request.PasswordSafe.SecurityAnswer2,
+                                                request.PasswordSafe.SecurityQuestion3, request.PasswordSafe.SecurityAnswer3);
+                response.Success = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                response.Success = false;
+                response.Message = ex.Message;
+                response.Detail = Log.BuildErrorMessage(ex);
+                Log.Error(ex);
             }
-            return null;
+            return response;
         }
     }
 }

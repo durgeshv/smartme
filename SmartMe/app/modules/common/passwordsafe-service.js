@@ -50,8 +50,8 @@
 
             var deferred = $q.defer();
             httpq.post(url, JSON.stringify(passwordSafeRequest))
-                .then(function (response) {
-                    deferred.resolve(response);
+                .then(function (data) {
+                    deferred.resolve(data);
                 });
 
             return deferred.promise;

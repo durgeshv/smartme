@@ -17,7 +17,6 @@
     IndexController.$inject = ['$scope', '$sessionStorage', '$q'];
 
     function config($routeProvider) {
-        console.log('Calling from appjs routeprovider');
         $routeProvider
             .when('/dashboard', {
                 templateUrl: 'modules/dashboard/dashboard.html',
@@ -47,7 +46,6 @@
 
         function initIndex() {
             var session;
-            console.log('Called from initIndex');
             waitingDialog.show();
             vm.login = false;
             createSession().then(function (data) {
