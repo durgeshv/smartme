@@ -133,6 +133,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\index.html" />
     <Content Include="app\login.html" />
+    <Content Include="app\modules\common\account-service.js" />
     <Content Include="app\modules\common\common-module.js" />
     <Content Include="app\modules\common\http-service.js" />
     <Content Include="app\modules\common\passwordsafe-service.js" />
@@ -144,6 +145,10 @@
     <Content Include="app\modules\expenses\expenses-controller.js" />
     <Content Include="app\modules\expenses\expenses-module.js" />
     <Content Include="app\modules\expenses\expenses.html" />
+    <Content Include="app\modules\finance\accounts\accounts-controller.js" />
+    <Content Include="app\modules\finance\accounts\accounts-directive.js" />
+    <Content Include="app\modules\finance\accounts\accounts-module.js" />
+    <Content Include="app\modules\finance\accounts\accounts.html" />
     <Content Include="app\modules\login\login.html" />
     <Content Include="app\modules\passwordsafe\passwordsafe-controller.js" />
     <Content Include="app\modules\passwordsafe\passwordsafe-directive.js" />
@@ -249,13 +254,16 @@
     <Content Include="app\vendor\raphael\raphael.min.js" />
     <Content Include="app\vendor\waiting-dialog\waiting-dailog.js" />
     <Content Include="DDL.sql" />
+    <Content Include="DML.sql" />
     <Content Include="Global.asax" />
+    <Content Include="ImportData.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PasswordSafeController.cs" />
     <Compile Include="Global.asax.cs">

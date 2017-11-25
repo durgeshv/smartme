@@ -55,6 +55,18 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
                             <li><a href="#/expenses">Expenses</a></li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Finance <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#/accounts">Accounts</a></li>
+                                    <li><a href="#">Income</a></li>
+                                    <li><a href="#">Expenss</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Balance Sheet</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#/passwordsafe">Password Safe</a></li>
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
@@ -125,6 +137,7 @@
         <script src="modules/common/session-service.js"></script>
         <script src="modules/common/util-service.js"></script>
         <script src="modules/common/passwordsafe-service.js"></script>
+        <script src="modules/common/account-service.js"></script>
 
         <!-- Dashboard -->
         <script src="modules/dashboard/dashboard-module.js"></script>
@@ -138,6 +151,11 @@
         <script src="modules/passwordsafe/passwordsafe-module.js"></script>
         <script src="modules/passwordsafe/passwordsafe-controller.js"></script>
         <script src="modules/passwordsafe/passwordsafe-directive.js"></script>
+
+        <!-- Accounts -->
+        <script src="modules/finance/accounts/accounts-module.js"></script>
+        <script src="modules/finance/accounts/accounts-directive.js"></script>
+        <script src="modules/finance/accounts/accounts-controller.js"></script>
 
     </body>
 </html>

@@ -2,7 +2,11 @@
 --go
 
 drop procedure spSavePasswordSafe
+drop procedure spSaveAccount
 drop table PasswordSafe
+drop table Account
+drop table AccountType
+
 go
 
 /*********************************************************************************************/
@@ -60,8 +64,36 @@ create table IntegratedAuthProvider
 )
 go
 
+create table AccountType
+(
+	AccountTypeId int identity(1,1) not null,
+	Name varchar(255) not null,
+	constraint PK_AccountType_AccountTypeId primary key(AccountTypeId)
+)
+go
+
+create table Account
+(
+	AccountId int identity(1,1) not null,
+	AccountName varchar(500) not null,
+	AccountNumber varchar(100) not null,
+	AccountTypeId int not null,
+	RoutingNumberPaperElectronic varchar(50) null,
+	RoutingNumberWires varchar(50) null,
+	CVV varchar(5),
+	PIN varchar(10),
+	Email varchar(255),
+	[Address] varchar(1000),
+	Phone1 varchar(15),
+	Phone2 varchar(15),
+	constraint PK_Account_AccountId primary key(AccountId),
+	constraint FK_Account_AccountTypeId foreign key(AccountTypeId) references AccountType(AccountTypeId)
+)
+go
+
+
 /*********************************************************************************************/
-ALTER procedure spSavePasswordSafe
+create procedure spSavePasswordSafe
 (
 	@passwordSafeId int = null,
 	@serviceName varchar(255),
@@ -103,4 +135,45 @@ begin
 end
 go
 
+create procedure spSaveAccount
+(
+	@accountId int = null,
+	@accountName varchar(500),
+	@accountNumber varchar(100),
+	@accountTypeId int,
+	@routingNumberPaperElectronic varchar(50) = null,
+	@routingNumberWires varchar(50) = null,
+	@cvv varchar(5) = null,
+	@pin varchar(10) = null,
+	@email varchar(255) = null,
+	@address varchar(1000) = null,
+	@phone1 varchar(15) = null,
+	@phone2 varchar(15) = null,
+	@newAccountId int = null out
+)
+as
+	if(@accountId is null)
+		begin
+			insert into Account(AccountName, AccountNumber, AccountTypeId, RoutingNumberPaperElectronic, RoutingNumberWires, CVV, PIN, Email, [Address], Phone1, Phone2)
+			values (@accountName, @accountNumber, @accountTypeId, @routingNumberPaperElectronic, @routingNumberWires, @cvv, @pin, @email, @address, @phone1, @phone2)
+
+			set @newAccountId = SCOPE_IDENTITY()
+		end
+	else
+		begin
+			update Account set 
+				AccountName = @accountName,
+				AccountNumber = @accountNumber,
+				AccountTypeId = @accountTypeId,
+				RoutingNumberPaperElectronic = @routingNumberPaperElectronic,
+				RoutingNumberWires = @routingNumberWires,
+				CVV = @cvv,
+				PIN = @pin,
+				Email = @email,
+				[Address] = @address,
+				Phone1 = @phone1,
+				Phone2 = @phone2
+			where AccountId = @accountId
+		end
+go
 

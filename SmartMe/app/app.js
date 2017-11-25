@@ -9,7 +9,8 @@
         'smartme.common',
         'smartme.dashboard',
         'smartme.expenses',
-        'smartme.passwordsafe'
+        'smartme.passwordsafe',
+        'smartme.accounts'
     ]);
 
     angular.module('smartme').config(config);
@@ -29,6 +30,10 @@
             .when('/passwordsafe', {
                 templateUrl: 'modules/passwordsafe/passwordsafe.html',
                 controller: 'PasswordSafeController'
+            })
+            .when('/accounts', {
+                templateUrl: 'modules/finance/accounts/accounts.html',
+                controller: 'AccountController'
             })
             .otherwise('/dashboard');
     }

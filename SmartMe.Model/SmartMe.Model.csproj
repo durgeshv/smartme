@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="enums\AccountType.cs" />
     <Compile Include="PasswordSafe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

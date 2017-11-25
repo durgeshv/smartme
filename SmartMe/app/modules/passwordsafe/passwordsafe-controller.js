@@ -57,8 +57,12 @@
         /*private functions                                                                 */
         /************************************************************************************/
         function loadRecords() {
+            waitingDialog.show();
             passwordSafeService.getRecords().then(function (data) {
                 vm.onlineAccountsTableOptions = data;
+            })
+            .finally(function () {
+                waitingDialog.hide();
             });
         }
 
